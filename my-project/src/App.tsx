@@ -1,38 +1,32 @@
 
-import { Button } from './components/ui/button'
-import { Table,
-  TableHeader,
-  TableBody,
-  TableFooter,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableCaption,  } from './components/ui/table'
+import { useEffect, useState } from 'react'
+import routes from './routes/route'
+import Home from './pages/Home'
+import StaticForm from './pages/StaticForm'
+
+const componentMap = {
+  Home,
+  StaticForm,
+} as const
 
 const App = () => {
+  const [pathname, setPathname] = useState(() => window.location.pathname)
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setPathname(window.location.pathname)
+    }
+
+    window.addEventListener('popstate', handlePopState)
+
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  const currentRoute = routes.find((route) => route.path === pathname) ?? routes[0]
+  const Page = componentMap[currentRoute.componentId as keyof typeof componentMap]
+
   return (
-    <div>
-      <Button>Click me</Button>
-      
-      <Table className="my-4">
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Age</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell>John Doe</TableCell>
-            <TableCell>30</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Jane Smith</TableCell>
-            <TableCell>25</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>  
-    </div>
+    <Page />
   )
 }
 
