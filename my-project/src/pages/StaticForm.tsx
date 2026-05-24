@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Table,
   TableHeader,
@@ -23,7 +23,7 @@ const initialData: Entry[] = [
   { id: 1, fullName: 'Anisha Manandhar', loginName: 'anishal23', isEmployee: true, partyName: '-', status: 'Draft' },
   { id: 2, fullName: 'Sunayana Shrestha', loginName: 'sunyanaa_121', isEmployee: false, partyName: 'Global IME Bank', status: 'Approved' },
   { id: 3, fullName: 'Manzil Shakya', loginName: 'manjilshakya', isEmployee: true, partyName: '-', status: 'Rejected' },
-  { id: 4, fullName: 'Sulav Adhikari', loginName: 'sulavadi', isEmployee: false, partyName: 'Global IME Bank', status: 'Pending' },
+  // { id: 4, fullName: 'Sulav Adhikari', loginName: 'sulavadi', isEmployee: false, partyName: 'Global IME Bank', status: 'Pending' },
 ]
 
 function badgeVariant(status: string) {
@@ -40,7 +40,7 @@ function badgeVariant(status: string) {
 }
 
 export default function StaticForm() {
-  const [entries, setEntries] = useState<Entry[]>(initialData)
+  const [entries] = useState<Entry[]>(initialData)
   const [query, setQuery] = useState('')
   const [filterEmployee, setFilterEmployee] = useState<'all' | 'yes' | 'no'>('all')
 
