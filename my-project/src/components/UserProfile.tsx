@@ -47,7 +47,7 @@ export function UserProfile() {
                   className="flex-1 justify-start gap-2"
                 >
                   <LogOut className="h-4 w-4" />
-                  Logout
+                  Logout to u
                 </Button>
               </div>
             </div>
